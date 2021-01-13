@@ -283,9 +283,11 @@ void QSourceHighliter::highlightSyntax(const QString &text)
                 else continue;
             }
             //inline comment
-            if (comment.isNull() && text[i] == QLatin1Char('/')) {
+            if (comment.isNull() && text[i] == QLatin1Char('/') ||
+                comment.isNull() && text[i] == QLatin1Char('-')) {
                 if((i+1) < textLen){
-                    if(text[i+1] == QLatin1Char('/')) {
+                    if(text[i+1] == QLatin1Char('/') ||
+                       text[i+1] == QLatin1Char('-')) {
                         setFormat(i, textLen, formatComment);
                         return;
                     } else if(text[i+1] == QLatin1Char('*')) {
